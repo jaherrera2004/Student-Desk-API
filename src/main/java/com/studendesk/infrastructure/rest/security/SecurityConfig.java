@@ -36,7 +36,8 @@ public class SecurityConfig {
      * */
     protected static final String[] URI_WHITE_LIST = new String[] {
             DatosGenerales.BASE_PATH+"/usuarios",
-            DatosGenerales.BASE_PATH+"/auth"
+            DatosGenerales.BASE_PATH+"/auth",
+            DatosGenerales.BASE_PATH+"/roles"
     };
 
     @Bean

@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Repository
 public class RolRepositoryAdapter implements RolRepositoryPort {
@@ -20,5 +22,13 @@ public class RolRepositoryAdapter implements RolRepositoryPort {
     public RolDto obtenerRolPorId(Integer id) {
         return rolMapper.toDto(rolRepository.findById(id)
                 .orElseThrow(()->new HttpGenericException(HttpStatus.BAD_REQUEST,"No se encontro el rol")));
+    }
+
+    @Override
+    public List<RolDto> obtenerRoles() {
+        return rolRepository.findAll()
+                .stream()
+                .map(rolMapper::toDto)
+                .toList();
     }
 }
