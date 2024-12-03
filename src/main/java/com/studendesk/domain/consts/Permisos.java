@@ -4,11 +4,12 @@ package com.studendesk.domain.consts;
 public class Permisos {
 
     public static String [] permisosEstudiante = {
-            "holi"
+            "curso:obtener-por-id"
     };
     public static String [] permisosProfesor = {
             "curso:crear",
-
+            "curso:obtener-por-profesor",
+            "curso:obtener-por-id"
     };
     public static String [] permisosAdmin = {
             "holi"

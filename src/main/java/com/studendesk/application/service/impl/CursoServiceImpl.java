@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class CursoServiceImpl implements CursoIService {
@@ -22,7 +24,7 @@ public class CursoServiceImpl implements CursoIService {
     public void crearCurso(CursoRequest request) {
 
         UsuarioDto profesor = usuarioRepositoryPort.obtenerUsuarioPorId(request.getIdProfesor());
-        if (!profesor.getRol().getRol().equals("profesor")) {
+        if (!profesor.getRol().getRol().equals("Profesor")) {
             throw new HttpGenericException(HttpStatus.BAD_REQUEST, "El usuario no es un profesor");
         }
         cursoRepositoryPort.crearCurso(construirCursoDto(request, profesor));
@@ -33,10 +35,25 @@ public class CursoServiceImpl implements CursoIService {
 
     }
 
+    @Override
+    public List<CursoDto> obtenerCursosPorProfesor(Integer idProfesor) {
+        List<CursoDto> cursos = cursoRepositoryPort.obtenerCursosPorProfesor(idProfesor);
+        cursos.forEach(curso -> curso.setProfesor(null));
+        return cursos;
+    }
+
+    @Override
+    public CursoDto obtenerCursoPorId(Integer idCurso) {
+        CursoDto curso = cursoRepositoryPort.obtenerCursoPorId(idCurso);
+        curso.setProfesor(null);
+        return curso;
+    }
+
     private CursoDto construirCursoDto(CursoRequest request, UsuarioDto profesor) {
         return CursoDto.builder()
                 .nombre(request.getNombre())
                 .codigo(request.getCodigo())
+                .descripcion(request.getDescripcion())
                 .profesor(profesor)
                 .build();
     }
