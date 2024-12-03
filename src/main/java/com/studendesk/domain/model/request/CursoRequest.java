@@ -9,4 +9,5 @@ public class CursoRequest {
     private String nombre;
     private String codigo;
     private Integer idProfesor;
+    private String descripcion;
 }

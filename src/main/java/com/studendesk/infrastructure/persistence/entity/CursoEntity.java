@@ -1,5 +1,6 @@
 package com.studendesk.infrastructure.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,8 +18,9 @@ public class CursoEntity {
     private Integer id;
     private String nombre;
     private String codigo;
+    private String descripcion;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_profesor")
     private UsuarioEntity profesor;
 

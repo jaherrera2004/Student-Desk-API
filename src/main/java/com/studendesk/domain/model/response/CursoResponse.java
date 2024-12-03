@@ -1,18 +1,15 @@
-package com.studendesk.domain.model.dto;
+package com.studendesk.domain.model.response;
 
-import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Builder
+@NoArgsConstructor
 @Getter
 @Setter
-public class CursoDto {
-
+public class CursoResponse {
     private Integer id;
     private String nombre;
     private String codigo;
     private String descripcion;
-    private UsuarioDto profesor;
-
 }

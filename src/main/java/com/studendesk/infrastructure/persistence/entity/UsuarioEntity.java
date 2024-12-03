@@ -39,7 +39,7 @@ public class UsuarioEntity {
     @OneToMany(mappedBy = "profesor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<CursoEntity> cursosDictados;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "estudiantes_cursos",
             joinColumns = @JoinColumn(name = "id_usuario"),

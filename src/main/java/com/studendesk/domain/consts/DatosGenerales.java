@@ -8,4 +8,5 @@ public class DatosGenerales {
     public static final String DESCRIPCION = "StudentDesk";
     public static final String BASE_PATH = "/studentdesk/api/v1";
     public static final Integer ROL_ADMIN=1;
+    public static final String EMAIL= "jaherrera2004@gmail.com";
 }
