@@ -9,12 +9,21 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Repository
 public class GeneroRepositoryAdapter implements GeneroRepositoryPort {
 
     private final GeneroJpaRepository generoRepository;
     private final GeneroMapper generoMapper;
+
+    @Override
+    public List<GeneroDto> obtenerGeneros() {
+        return generoRepository.findAll().stream()
+                .map(generoMapper::toDto)
+                .toList();
+    }
 
     @Override
     public GeneroDto obtenerGeneroPorId(Integer id) {

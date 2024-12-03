@@ -18,4 +18,9 @@ public class CursoRepositoryAdapter implements CursoRepositoryPort {
     public void crearCurso(CursoDto cursoDto) {
         cursoJpaRepository.save(cursoMapper.toEntity(cursoDto));
     }
+
+    @Override
+    public void matricularEstudiante(Integer idCurso, Integer idEstudiante) {
+        cursoJpaRepository.matricularEstudiante(idCurso, idEstudiante);
+    }
 }

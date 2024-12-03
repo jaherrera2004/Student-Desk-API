@@ -16,11 +16,11 @@ public class Permisos {
 
     public static String [] obtenerPermisos(String rol){
         switch (rol){
-            case "estudiante":
+            case "Estudiante":
                 return permisosEstudiante;
-            case "profesor":
+            case "Profesor":
                 return permisosProfesor;
-            case "admin":
+            case "Admin":
                 return permisosAdmin;
             default:
                 return null;

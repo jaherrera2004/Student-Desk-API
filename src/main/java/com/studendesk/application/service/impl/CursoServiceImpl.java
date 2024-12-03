@@ -28,6 +28,11 @@ public class CursoServiceImpl implements CursoIService {
         cursoRepositoryPort.crearCurso(construirCursoDto(request, profesor));
     }
 
+    @Override
+    public void matricularEstudiante(Integer idCurso, Integer idEstudiante) {
+
+    }
+
     private CursoDto construirCursoDto(CursoRequest request, UsuarioDto profesor) {
         return CursoDto.builder()
                 .nombre(request.getNombre())

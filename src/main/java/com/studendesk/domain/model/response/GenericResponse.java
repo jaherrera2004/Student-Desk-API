@@ -11,9 +11,9 @@ import lombok.Setter;
 public class GenericResponse {
 
     private boolean status;
-    private String message;
+    private String mensaje;
 
-    public static GenericResponse ok(boolean status, String message) {
-        return new GenericResponse(status, message);
+    public static GenericResponse ok(boolean status, String mensaje) {
+        return new GenericResponse(status, mensaje);
     }
 }

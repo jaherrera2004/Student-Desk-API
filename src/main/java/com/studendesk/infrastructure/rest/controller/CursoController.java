@@ -6,10 +6,7 @@ import com.studendesk.domain.model.request.CursoRequest;
 import com.studendesk.domain.model.response.GenericResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -23,5 +20,10 @@ public class CursoController {
     public GenericResponse crearCurso(@RequestBody CursoRequest request) {
         cursoService.crearCurso(request);
         return GenericResponse.ok(true, "Curso creado correctamente");
+    }
+
+    @PostMapping("/{idCurso}/{idEstudiante}")
+    public GenericResponse matricularEstudiante(@PathVariable Integer idCurso,@PathVariable Integer idEstudiante) {
+        return null;
     }
 }
