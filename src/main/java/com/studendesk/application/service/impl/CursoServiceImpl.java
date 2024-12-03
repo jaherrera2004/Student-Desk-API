@@ -1,6 +1,8 @@
 package com.studendesk.application.service.impl;
 
 import com.studendesk.application.service.interfaces.CursoIService;
+import com.studendesk.domain.emailSenderPort.EmailSenderPort;
+import com.studendesk.domain.emailSenderPort.TIPOS_CORREOS;
 import com.studendesk.domain.exceptions.HttpGenericException;
 import com.studendesk.domain.model.dto.CursoDto;
 import com.studendesk.domain.model.dto.UsuarioDto;
@@ -19,6 +21,7 @@ public class CursoServiceImpl implements CursoIService {
 
     private final CursoRepositoryPort cursoRepositoryPort;
     private final UsuarioRepositoryPort usuarioRepositoryPort;
+    private final EmailSenderPort emailSenderPort;
 
     @Override
     public void crearCurso(CursoRequest request) {
@@ -27,7 +30,10 @@ public class CursoServiceImpl implements CursoIService {
         if (!profesor.getRol().getRol().equals("Profesor")) {
             throw new HttpGenericException(HttpStatus.BAD_REQUEST, "El usuario no es un profesor");
         }
-        cursoRepositoryPort.crearCurso(construirCursoDto(request, profesor));
+        CursoDto cursoDto = construirCursoDto(request, profesor);
+
+        cursoRepositoryPort.crearCurso(cursoDto);
+        emailSenderPort.enviarCorreo(profesor.getEmail(),cursoDto, TIPOS_CORREOS.NUEVO_CURSO);
     }
 
     @Override
